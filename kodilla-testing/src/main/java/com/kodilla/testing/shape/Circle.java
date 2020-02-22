@@ -33,4 +33,12 @@ public class Circle implements Shape {
     public double getField() {
         return Math.PI * Math.pow(radius, 2);
     }
+
+    @Override
+    public String toString() {
+        return "Shape {" +
+                "name='" + name + '\'' +
+                ", radius=" + radius +
+                '}';
+    }
 }

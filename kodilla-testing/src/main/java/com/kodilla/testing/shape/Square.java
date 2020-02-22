@@ -33,5 +33,13 @@ public class Square implements Shape {
     public double getField() {
         return Math.pow(edgeLength, 2);
     }
+
+    @Override
+    public String toString() {
+        return "Shape {" +
+                "name='" + name + '\'' +
+                ", edgeLength=" + edgeLength +
+                '}';
+    }
 }
 
