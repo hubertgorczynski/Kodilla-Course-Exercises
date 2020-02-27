@@ -5,7 +5,7 @@ import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.reference.FunctionalCalculator;
 
 public class StreamMain {
-    public static void main(String[]args) {
+    public static void main(String[] args) {
         System.out.println("Welcome to module 7 - Stream");
         Processor processor = new Processor();
         //Executor codeToExecute = () -> System.out.println("This is an example text.");
@@ -27,7 +27,7 @@ public class StreamMain {
 
         //Exercise 7.1
         PoemBeautifier poemBeautifier = new PoemBeautifier();
-        String beautifulText = poemBeautifier.beautify("First sample text", (text -> text.toUpperCase()));
+        String beautifulText = poemBeautifier.beautify("First sample text", String::toUpperCase);
         System.out.println(beautifulText);
 
         String beautifulText2 = poemBeautifier.beautify("Second sample text", (text -> "ABC " + text + " ABC"));
