@@ -1,12 +1,29 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
+
+        Forum forum = new Forum();
+        Map<Integer, ForumUser> mapOfForumUsers = forum.getForumUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> Period.between(forumUser.getBirthDate(), LocalDate.now()).getYears() >= 20)
+                .filter(forumUser -> forumUser.getPostsNumber() >= 1)
+                .collect(Collectors.toMap(ForumUser::getIdNumber, ForumUser -> ForumUser));
+
+        mapOfForumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + " : " + entry.getValue())
+                .forEach(System.out::println);
+    }
+}
+        /*
         System.out.println("Welcome to module 7 - Stream");
         Processor processor = new Processor();
         //Executor codeToExecute = () -> System.out.println("This is an example text.");
@@ -42,6 +59,4 @@ public class StreamMain {
 
         System.out.println("Using Stream to generate even numbers from 1 to 20");
         NumbersGenerator.generateEven(20);
-
-    }
-}
+        */
