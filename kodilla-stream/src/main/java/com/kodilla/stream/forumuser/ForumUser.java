@@ -2,14 +2,14 @@ package com.kodilla.stream.forumuser;
 
 import java.time.LocalDate;
 
-public class ForumUser {
+public final class ForumUser {
     private final int idNumber;
-    private String name;
-    private char sex;
-    private LocalDate birthDate;
-    private int postsNumber;
+    private final String name;
+    private final char sex;
+    private final LocalDate birthDate;
+    private final int postsNumber;
 
-    public ForumUser(int idNumber, String name, char sex, LocalDate birthDate, int postsNumber) {
+    public ForumUser(final int idNumber, final String name, final char sex, final LocalDate birthDate, final int postsNumber) {
         this.idNumber = idNumber;
         this.name = name;
         this.sex = sex;

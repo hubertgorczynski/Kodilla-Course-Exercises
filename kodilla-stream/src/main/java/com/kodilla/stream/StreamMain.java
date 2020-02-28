@@ -16,7 +16,7 @@ public class StreamMain {
                 .filter(forumUser -> forumUser.getSex() == 'M')
                 .filter(forumUser -> Period.between(forumUser.getBirthDate(), LocalDate.now()).getYears() >= 20)
                 .filter(forumUser -> forumUser.getPostsNumber() >= 1)
-                .collect(Collectors.toMap(ForumUser::getIdNumber, ForumUser -> ForumUser));
+                .collect(Collectors.toMap(ForumUser::getIdNumber, forumUser -> forumUser));
 
         mapOfForumUsers.entrySet().stream()
                 .map(entry -> entry.getKey() + " : " + entry.getValue())
