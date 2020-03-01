@@ -16,14 +16,14 @@ public class WorldTestSuite {
         Continent asia = new Continent("Asia");
         Continent northAmerica = new Continent("North America");
 
-        Country poland = new Country("Poland", new BigDecimal("782364345"));
-        Country germany = new Country("Germany", new BigDecimal("847593758"));
-        Country italy = new Country("Italy", new BigDecimal("427483485"));
-        Country china = new Country("China", new BigDecimal("13984735435"));
-        Country vietnam = new Country("Vietnam", new BigDecimal("318586943"));
-        Country canada = new Country("Canada", new BigDecimal("45546334"));
-        Country japan = new Country("Japan", new BigDecimal("34534534534"));
-        Country usa = new Country("USA", new BigDecimal("222345215"));
+        Country poland = new Country("Poland", new BigDecimal("80000000000000000000"));
+        Country germany = new Country("Germany", new BigDecimal("83000000000000000000"));
+        Country italy = new Country("Italy", new BigDecimal("80000000000000000000"));
+        Country china = new Country("China", new BigDecimal("93800600000000000000"));
+        Country vietnam = new Country("Vietnam", new BigDecimal("95000000000000000000"));
+        Country canada = new Country("Canada", new BigDecimal("98000000000000000000"));
+        Country japan = new Country("Japan", new BigDecimal("61260000000000000000"));
+        Country usa = new Country("USA", new BigDecimal("92700000000000000000"));
 
         world.addContinent(europa);
         world.addContinent(asia);
@@ -44,7 +44,7 @@ public class WorldTestSuite {
         BigDecimal totalPeople = world.getPeopleQuantity();
 
         //Then
-        BigDecimal totalPeopleExpected = new BigDecimal("51163190049");
+        BigDecimal totalPeopleExpected = new BigDecimal("683760600000000000000");
         Assert.assertEquals(totalPeopleExpected, totalPeople);
     }
 }

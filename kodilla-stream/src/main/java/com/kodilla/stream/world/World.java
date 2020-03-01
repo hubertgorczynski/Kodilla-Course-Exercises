@@ -12,11 +12,9 @@ public final class World {
     }
 
     public BigDecimal getPeopleQuantity() {
-        BigDecimal peopleQuantityOnTheWorld = listOfContinentsOnTheWorld.stream()
+        return listOfContinentsOnTheWorld.stream()
                 .flatMap(continent -> continent.getListOfCountriesOnContinent().stream())
                 .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        return peopleQuantityOnTheWorld;
     }
 }
