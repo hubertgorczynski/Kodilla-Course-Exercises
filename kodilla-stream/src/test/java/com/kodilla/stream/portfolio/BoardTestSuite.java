@@ -155,12 +155,11 @@ public class BoardTestSuite {
                 .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
                 .reduce(0, (sum, current) -> sum += current);
 
-        int tasksQuantity = project.getTaskLists().stream()
+        long tasksQuantity = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
-                .map(t -> 1)
-                .reduce(0, (sum, current) -> sum += current);
+                .count();
 
         average = (double) sumOfDays / tasksQuantity;
 
