@@ -157,9 +157,8 @@ public class BoardTestSuite {
 
         long tasksQuantity = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
-                .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
-                .count();
+                .mapToLong(tl -> tl.getTasks().size())
+                .sum();
 
         average = (double) sumOfDays / tasksQuantity;
 
