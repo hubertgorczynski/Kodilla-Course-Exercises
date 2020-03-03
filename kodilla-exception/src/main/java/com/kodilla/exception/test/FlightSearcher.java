@@ -1,25 +1,13 @@
 package com.kodilla.exception.test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class FlightSearcher {
 
     private Map<String, Boolean> airportMap;
 
-    public FlightSearcher() {
-        airportMap = airportCreator();
-    }
-
-    private Map<String, Boolean> airportCreator() {
-        Map<String, Boolean> airportDataBase = new HashMap<>();
-        airportDataBase.put("BER", false);
-        airportDataBase.put("MUN", false);
-        airportDataBase.put("LON", true);
-        airportDataBase.put("PAR", true);
-        airportDataBase.put("POZ", true);
-
-        return airportDataBase;
+    public FlightSearcher(Map<String, Boolean> airportMap) {
+        this.airportMap = airportMap;
     }
 
     private boolean findAirport(String airportName) throws RouteNotFoundException {
