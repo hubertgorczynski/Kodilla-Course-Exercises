@@ -12,28 +12,32 @@ public class FlightSearcherRunner {
 
         try {
             boolean existBerlinLondon = flightSearcher.findFlight(berlinLondon);
-            System.out.println("Possibility of flight Berlin - London: " + existBerlinLondon);
+            System.out.println("Possibility of flight from " + berlinLondon.getDepartureAirport() + " to "
+                    + berlinLondon.getArrivalAirport() + " : " + existBerlinLondon);
         } catch (RouteNotFoundException e) {
             System.out.println(e + " Please input correct airport name.");
         }
 
         try {
             boolean existPoznanMunich = flightSearcher.findFlight(poznanMunich);
-            System.out.println("Possibility of flight Poznan - Munich: " + existPoznanMunich);
+            System.out.println("Possibility of flight from " + poznanMunich.getDepartureAirport() + " to "
+                    + poznanMunich.getArrivalAirport() + " : " + existPoznanMunich);
         } catch (RouteNotFoundException e) {
             System.out.println(e + " Please input correct airport name.");
         }
 
         try {
             boolean existParisInowroclaw = flightSearcher.findFlight(parisInowroclaw);
-            System.out.println("Possibility of flight Paris - Inowroclaw: " + existParisInowroclaw);
+            System.out.println("Possibility of flight from " + parisInowroclaw.getDepartureAirport() + " to "
+                    + parisInowroclaw.getArrivalAirport() + " : " + existParisInowroclaw);
         } catch (RouteNotFoundException e) {
             System.out.println(e + " Please input correct airport name.");
         }
 
         try {
             boolean existLondonParis = flightSearcher.findFlight(londonParis);
-            System.out.println("Possibility of flight London - Paris: " + existLondonParis);
+            System.out.println("Possibility of flight from " + londonParis.getDepartureAirport() + " to "
+                    + londonParis.getArrivalAirport() + " : " + existLondonParis);
         } catch (RouteNotFoundException e) {
             System.out.println(e + " Please input correct airport name.");
         }

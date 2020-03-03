@@ -5,7 +5,11 @@ import java.util.Map;
 
 public class FlightSearcher {
 
-    private Map<String, Boolean> airportMap = airportCreator();
+    private Map<String, Boolean> airportMap;
+
+    public FlightSearcher() {
+        airportMap = airportCreator();
+    }
 
     private Map<String, Boolean> airportCreator() {
         Map<String, Boolean> airportDataBase = new HashMap<>();
@@ -22,7 +26,7 @@ public class FlightSearcher {
         if (airportMap.containsKey(airportName)) {
             return airportMap.get(airportName);
         } else {
-            throw new RouteNotFoundException("Indicated airport does not exist in our database!");
+            throw new RouteNotFoundException("Indicated airport: " + airportName + " does not exist in our database!");
         }
     }
 
