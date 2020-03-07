@@ -164,5 +164,21 @@ public class BoardTestSuite {
 
         //Then
         Assert.assertEquals(10.0, average, 0.0001);
+
+
+        /* Wykorzystanie wektora skalarnego average()
+
+        double avg = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+
+        //Then
+        Assert.assertEquals(10.0, avg, 0.0001);
+
+         */
     }
 }
