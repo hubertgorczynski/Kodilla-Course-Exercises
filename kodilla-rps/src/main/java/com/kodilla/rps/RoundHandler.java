@@ -5,33 +5,28 @@ import java.util.Scanner;
 public class RoundHandler {
     private String playerMove;
     private String computerMove;
+    Conditions stateOfGame;
 
-    public boolean play() {
-        boolean stateOfGame;
-        GameHandler gameHandler = new GameHandler();
+    public Conditions play() {
         Scanner scan = new Scanner(System.in);
-
         String whatToDo = askForPlayerMove();
 
         if (whatToDo.equals("x")) {
             System.out.println(Statements.areYouSureExit);
             if (scan.next().equals("x")) {
-                gameHandler.displayFinalScores();
-                gameHandler.start(false);
+                return Conditions.EXIT_GAME;
             }
-        }
-
-        if (whatToDo.equals("n")) {
+        } else if (whatToDo.equals("n")) {
             System.out.println(Statements.areYouSureNewGame);
             if (scan.next().equals("n")) {
-                gameHandler.start(true);
+                return Conditions.NEW_GAME;
             }
+        } else {
+            setHumanMoves(whatToDo);
+            setComputerMoves();
+            return stateOfGame = compareMoves();
         }
-
-        setHumanMoves(whatToDo);
-        setComputerMoves();
-        stateOfGame = compareMoves();
-        return stateOfGame;
+        return Conditions.INVALID_KEY;
     }
 
     private String askForPlayerMove() {
@@ -47,21 +42,21 @@ public class RoundHandler {
         return playerChoice;
     }
 
-    private boolean compareMoves() {
+    private Conditions compareMoves() {
         System.out.println("You choose: " + playerMove + " vs Computer choose: " + computerMove);
         if (playerMove.equals("rock") && computerMove.equals("scissors")
                 || playerMove.equals("paper") && computerMove.equals("rock")
                 || playerMove.equals("scissors") && computerMove.equals("paper")) {
-            System.out.println("You win!");
-            return true;
+            System.out.println("Player wins!");
+            return Conditions.HUMAN_WIN;
         } else if (playerMove.equals("rock") && computerMove.equals("paper")
                 || playerMove.equals("paper") && computerMove.equals("scissors")
                 || playerMove.equals("scissors") && computerMove.equals("rock")) {
             System.out.println("Computer wins!");
-            return false;
+            return Conditions.COMPUTER_WIN;
         } else {
             System.out.println("We have a tie!");
-            return false;
+            return Conditions.TIE;
         }
     }
 
