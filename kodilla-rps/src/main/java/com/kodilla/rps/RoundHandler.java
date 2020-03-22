@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class RoundHandler {
     private String playerMove;
     private String computerMove;
-    Conditions stateOfGame;
 
     public Conditions play() {
         Scanner scan = new Scanner(System.in);
@@ -24,7 +23,7 @@ public class RoundHandler {
         } else {
             setHumanMoves(whatToDo);
             setComputerMoves();
-            return stateOfGame = compareMoves();
+            return compareMoves();
         }
         return Conditions.INVALID_KEY;
     }
@@ -33,12 +32,12 @@ public class RoundHandler {
         System.out.println(Statements.rules);
         Scanner moveScanner = new Scanner(System.in);
         String playerChoice = moveScanner.next();
-        if (playerChoice.equals("1") || playerChoice.equals("2") || playerChoice.equals("3")
-                || playerChoice.equals("x") || playerChoice.equals("n")) {
-            return playerChoice;
+
+        while (!playerChoice.equals("1") && !playerChoice.equals("2") && !playerChoice.equals("3")
+                && !playerChoice.equals("x") && !playerChoice.equals("n")) {
+            System.out.println("Invalid key used. Please enter one from these keys: 1, 2, 3, n, x.");
+            playerChoice = moveScanner.next();
         }
-        System.out.println("Invalid key used. Please enter one from these keys: 1, 2, 3, n, x.");
-        askForPlayerMove();
         return playerChoice;
     }
 

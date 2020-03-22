@@ -3,22 +3,21 @@ package com.kodilla.rps;
 import java.util.Scanner;
 
 public class GameHandler {
-    int rounds = 1;
-    int numberOfHumanVictories;
-    int numberOfComputerVictories;
-    int numberOfTies;
-    int roundsToWin;
-    String playerName;
-    boolean end = false;
+    private int numberOfHumanVictories;
+    private int numberOfComputerVictories;
+    private int numberOfTies;
+    private int roundsToWin;
+    private String playerName;
 
     public void start() {
+        boolean end = false;
 
         while (!end) {
             boolean endRound = false;
+            int rounds = 1;
             numberOfHumanVictories = 0;
             numberOfComputerVictories = 0;
             numberOfTies = 0;
-            rounds = 1;
 
             System.out.println("\nWELCOME IN ROCK-PAPER-SCISSORS THE GAME!!! \nPlease enter Your name below:");
             Scanner nameScanner = new Scanner(System.in);
@@ -52,10 +51,10 @@ public class GameHandler {
                     rounds++;
                     displayActualScores();
                 } else if (stateOfGame.equals(Conditions.INVALID_KEY)) {
-                    System.out.println("Please enter correct letter or number!");
+                    System.out.println("Invalid key used!");
                 }
             }
-            displayFinalScores();
+            displayFinalScores(rounds);
         }
     }
 
@@ -74,7 +73,7 @@ public class GameHandler {
                 "\n Computer wins: " + numberOfComputerVictories);
     }
 
-    public void displayFinalScores() {
+    private void displayFinalScores(int rounds) {
         System.out.println("\n|Final scoreboard|" + "\n " + playerName + " wins: " + numberOfHumanVictories +
                 "\n Computer wins: " + numberOfComputerVictories + "\n Number of ties: " + numberOfTies +
                 "\n Rounds passed: " + (rounds - 1));
