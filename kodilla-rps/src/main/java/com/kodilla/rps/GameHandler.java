@@ -33,25 +33,32 @@ public class GameHandler {
 
                 Conditions stateOfGame = roundHandler.play();
 
-                if (stateOfGame.equals(Conditions.EXIT_GAME)) {
-                    end = true;
-                    endRound = true;
-                } else if ((stateOfGame.equals(Conditions.NEW_GAME))) {
-                    endRound = true;
-                } else if ((stateOfGame.equals(Conditions.HUMAN_WIN))) {
-                    numberOfHumanVictories++;
-                    rounds++;
-                    displayActualScores();
-                } else if ((stateOfGame.equals(Conditions.COMPUTER_WIN))) {
-                    numberOfComputerVictories++;
-                    rounds++;
-                    displayActualScores();
-                } else if (stateOfGame.equals(Conditions.TIE)) {
-                    numberOfTies++;
-                    rounds++;
-                    displayActualScores();
-                } else if (stateOfGame.equals(Conditions.INVALID_KEY)) {
-                    System.out.println("Invalid key used!");
+                switch (stateOfGame) {
+                    case EXIT_GAME:
+                        end = true;
+                        endRound = true;
+                        break;
+                    case NEW_GAME:
+                        endRound = true;
+                        break;
+                    case HUMAN_WIN:
+                        numberOfHumanVictories++;
+                        rounds++;
+                        displayActualScores();
+                        break;
+                    case COMPUTER_WIN:
+                        numberOfComputerVictories++;
+                        rounds++;
+                        displayActualScores();
+                        break;
+                    case TIE:
+                        numberOfTies++;
+                        rounds++;
+                        displayActualScores();
+                        break;
+                    case INVALID_KEY:
+                        System.out.println("Invalid key used!");
+                        break;
                 }
             }
             displayFinalScores(rounds);

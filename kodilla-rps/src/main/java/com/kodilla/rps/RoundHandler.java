@@ -11,12 +11,12 @@ public class RoundHandler {
         String whatToDo = askForPlayerMove();
 
         if (whatToDo.equals("x")) {
-            System.out.println(Statements.areYouSureExit);
+            System.out.println(Statements.ARE_YOU_SURE_EXIT);
             if (scan.next().equals("x")) {
                 return Conditions.EXIT_GAME;
             }
         } else if (whatToDo.equals("n")) {
-            System.out.println(Statements.areYouSureNewGame);
+            System.out.println(Statements.ARE_YOU_SURE_NEW_GAME);
             if (scan.next().equals("n")) {
                 return Conditions.NEW_GAME;
             }
@@ -29,7 +29,7 @@ public class RoundHandler {
     }
 
     private String askForPlayerMove() {
-        System.out.println(Statements.rules);
+        System.out.println(Statements.RULES);
         Scanner moveScanner = new Scanner(System.in);
         String playerChoice = moveScanner.next();
 
