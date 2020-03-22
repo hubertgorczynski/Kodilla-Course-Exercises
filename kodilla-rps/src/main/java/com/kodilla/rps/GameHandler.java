@@ -11,10 +11,10 @@ public class GameHandler {
     String playerName;
     boolean end = false;
 
-    public void start(boolean doYouWantToPlay) {
-        end = !doYouWantToPlay;
+    public void start() {
 
         while (!end) {
+            boolean endRound = false;
             numberOfHumanVictories = 0;
             numberOfComputerVictories = 0;
             numberOfTies = 0;
@@ -29,16 +29,16 @@ public class GameHandler {
 
             RoundHandler roundHandler = new RoundHandler();
 
-            while (numberOfHumanVictories < roundsToWin && numberOfComputerVictories < roundsToWin) {
+            while (!endRound && numberOfHumanVictories < roundsToWin && numberOfComputerVictories < roundsToWin) {
                 System.out.println("\nRound: " + rounds);
 
                 Conditions stateOfGame = roundHandler.play();
 
                 if (stateOfGame.equals(Conditions.EXIT_GAME)) {
-                    displayFinalScores();
-                    start(false);
+                    end = true;
+                    endRound = true;
                 } else if ((stateOfGame.equals(Conditions.NEW_GAME))) {
-                    start(true);
+                    endRound = true;
                 } else if ((stateOfGame.equals(Conditions.HUMAN_WIN))) {
                     numberOfHumanVictories++;
                     rounds++;
