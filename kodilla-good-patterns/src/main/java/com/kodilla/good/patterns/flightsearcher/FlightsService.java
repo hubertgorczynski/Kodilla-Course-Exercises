@@ -33,15 +33,14 @@ public class FlightsService {
     private List<Flight> createConnectionsList(Flight flight, String arrivalAirport) {
         List<Flight> flightsRoute = new ArrayList<>();
 
-        List<Flight> temporaryBase = dataBase.getAvailableFlights().stream()
+        dataBase.getAvailableFlights().stream()
                 .filter(temporaryFlight -> (flight.getArrivalAirport().equals(temporaryFlight.getDepartureAirport()) &&
                         temporaryFlight.getArrivalAirport().equals(arrivalAirport)))
-                .collect(Collectors.toList());
-
-        if (temporaryBase.size() > 0) {
-            flightsRoute.add(flight);
-            flightsRoute.addAll(temporaryBase);
-        }
+                .findAny()
+                .ifPresent(nextFlight -> {
+                    flightsRoute.add(flight);
+                    flightsRoute.add(nextFlight);
+                });
 
         return flightsRoute;
     }
