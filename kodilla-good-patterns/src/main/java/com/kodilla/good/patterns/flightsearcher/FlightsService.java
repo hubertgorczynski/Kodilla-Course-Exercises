@@ -23,23 +23,25 @@ public class FlightsService {
     }
 
     public Set<List<Flight>> availableConnectingFlights(String departureAirport, String arrivalAirport) {
-        Set<List<Flight>> setOfFlights = new HashSet<>();
-
-        dataBase.getAvailableFlights().stream()
+        return dataBase.getAvailableFlights().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
-                .forEach(flight -> {
-                    List <Flight> temporaryBase = dataBase.getAvailableFlights().stream()
-                            .filter(temporaryFlight -> (flight.getArrivalAirport().equals(temporaryFlight.getDepartureAirport()) &&
-                                    temporaryFlight.getArrivalAirport().equals(arrivalAirport)))
-                            .collect(Collectors.toList());
+                .map(flight -> createConnectionsList(flight, arrivalAirport))
+                .collect(Collectors.toSet());
+    }
 
-                    if (temporaryBase.size() > 0) {
-                        List<Flight> flightsRoute = new ArrayList<>();
-                        flightsRoute.add(flight);
-                        flightsRoute.addAll(temporaryBase);
-                        setOfFlights.add(flightsRoute);
-                    }
-                });
-        return setOfFlights;
+    private List<Flight> createConnectionsList(Flight flight, String arrivalAirport) {
+        List<Flight> flightsRoute = new ArrayList<>();
+
+        List<Flight> temporaryBase = dataBase.getAvailableFlights().stream()
+                .filter(temporaryFlight -> (flight.getArrivalAirport().equals(temporaryFlight.getDepartureAirport()) &&
+                        temporaryFlight.getArrivalAirport().equals(arrivalAirport)))
+                .collect(Collectors.toList());
+
+        if (temporaryBase.size() > 0) {
+            flightsRoute.add(flight);
+            flightsRoute.addAll(temporaryBase);
+        }
+
+        return flightsRoute;
     }
 }
