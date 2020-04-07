@@ -26,6 +26,7 @@ public class FlightsService {
         return dataBase.getAvailableFlights().stream()
                 .filter(flight -> flight.getDepartureAirport().equals(departureAirport))
                 .map(flight -> createConnectionsList(flight, arrivalAirport))
+                .filter(flight -> !flight.isEmpty())
                 .collect(Collectors.toSet());
     }
 
