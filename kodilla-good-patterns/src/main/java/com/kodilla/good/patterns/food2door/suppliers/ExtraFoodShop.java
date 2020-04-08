@@ -28,6 +28,7 @@ public class ExtraFoodShop implements FoodProducer {
         return productsList;
     }
 
+    @Override
     public boolean process(Customer customer, Map<Product, Integer> productsOrders) {
         for (Map.Entry<Product, Integer> entry : productsOrders.entrySet()) {
             Optional<Integer> productQty = Optional.ofNullable(productsList.get(entry.getKey()));
