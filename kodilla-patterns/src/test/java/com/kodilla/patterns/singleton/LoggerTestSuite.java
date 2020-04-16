@@ -25,10 +25,17 @@ public class LoggerTestSuite {
         //Given
         //When
         Logger instance1 = Logger.getInstance();
+        instance1.log("log1");
         Logger instance2 = Logger.getInstance();
+        instance2.log("log2");
+
+        String lastLogOfInstance1 = instance1.getLastLog();
+        String lastLogOfInstance2 = instance2.getLastLog();
+        String lastLogName = Logger.getInstance().getLastLog();
+
         //Then
         Assert.assertEquals(instance1, instance2);
+        Assert.assertEquals(lastLogOfInstance1, lastLogOfInstance2);
+        Assert.assertEquals(lastLogName, "log2");
     }
-
-
 }
