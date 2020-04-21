@@ -15,6 +15,7 @@ public final class Bigmac {
         private String sauce;
         private final List<String> ingredients = new ArrayList<>();
 
+        // Below methods working as setters
         public BigmacBuilder bun(String bun) {
             this.bun = bun;
             return this;
@@ -41,10 +42,14 @@ public final class Bigmac {
     }
 
     private Bigmac(final String bun, final int burgers, final String sauce, List<String> ingredients) {
-        this.bun = bun;
-        this.burgers = burgers;
-        this.sauce = sauce;
-        this.ingredients = new ArrayList<>(ingredients);
+        if (bun != null) {
+            this.bun = bun;
+            this.burgers = burgers;
+            this.sauce = sauce;
+            this.ingredients = new ArrayList<>(ingredients);
+        } else {
+            throw new IllegalStateException("We cannot find bun type, please enter some value e.g. 'sesame seed bun'.");
+        }
     }
 
     public String getBun() {
