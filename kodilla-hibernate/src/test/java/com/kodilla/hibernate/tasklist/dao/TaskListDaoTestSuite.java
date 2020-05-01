@@ -17,7 +17,7 @@ public class TaskListDaoTestSuite {
     private TaskListDao taskListDao;
 
     @Test
-    public void testTaskDaoFindByDuration() {
+    public void testFindByListName() {
         //Given
         TaskList taskList = new TaskList("Sample name", "Sample description");
         taskListDao.save(taskList);
