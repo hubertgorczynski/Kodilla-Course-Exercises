@@ -28,6 +28,7 @@ public class Invoice {
         return id;
     }
 
+    @NotNull
     @Column(name = "INVOICE_NUMBER")
     public String getNumber() {
         return number;
@@ -39,7 +40,6 @@ public class Invoice {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @Column(name = "ITEM_ID")
     public List<Item> getItems() {
         return items;
     }

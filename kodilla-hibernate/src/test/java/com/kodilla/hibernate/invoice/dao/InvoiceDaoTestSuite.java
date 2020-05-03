@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,10 +50,10 @@ public class InvoiceDaoTestSuite {
         int invoiceId = invoice.getId();
         int itemSize = invoice.getItems().size();
 
-        Invoice invoiceReadFromDB = invoiceDao.findById(invoiceId);
+        Optional<Invoice> invoiceReadFromDB = invoiceDao.findById(invoiceId);
 
         //Then
-        Assert.assertEquals(invoiceId, invoiceReadFromDB.getId());
+        Assert.assertNotEquals(0, invoiceReadFromDB);
         Assert.assertEquals(3, itemSize);
 
         //CleanUp

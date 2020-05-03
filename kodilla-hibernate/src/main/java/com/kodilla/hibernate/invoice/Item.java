@@ -33,11 +33,13 @@ public class Item {
         return id;
     }
 
+    @NotNull
     @Column(name = "ITEM_PRICE")
     public BigDecimal getPrice() {
         return price;
     }
 
+    @NotNull
     @Column(name = "ITEM_QUANTITY")
     public int getQuantity() {
         return quantity;
