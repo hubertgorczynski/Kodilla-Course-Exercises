@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class InvoiceDaoTestSuite {
@@ -48,13 +50,12 @@ public class InvoiceDaoTestSuite {
         //When
         invoiceDao.save(invoice);
         int invoiceId = invoice.getId();
-        int itemSize = invoice.getItems().size();
-
         Optional<Invoice> invoiceReadFromDB = invoiceDao.findById(invoiceId);
 
         //Then
-        Assert.assertNotEquals(0, invoiceReadFromDB);
-        Assert.assertEquals(3, itemSize);
+        Assert.assertTrue(invoiceReadFromDB.isPresent());
+        Assert.assertNotEquals(0, invoiceReadFromDB.get());
+        Assert.assertEquals(3, invoiceReadFromDB.get().getItems().size());
 
         //CleanUp
         invoiceDao.deleteById(invoiceId);
