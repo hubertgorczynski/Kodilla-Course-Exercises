@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
@@ -66,13 +67,10 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testQueriesFindByString() {
+    public void testQueriesFindLastNameByString() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
 
         //When
         employeeDao.save(johnSmith);
@@ -80,21 +78,38 @@ public class CompanyDaoTestSuite {
         employeeDao.save(stephanieClarckson);
         int stephanieClarksonId = stephanieClarckson.getId();
 
+        List<Employee> employeesWithLastName = employeeDao.retrieveEmployeesByLastname("Smith");
+        int expectedLastnameId = employeesWithLastName.get(0).getId();
+
+        //Then
+        Assert.assertEquals(1, employeesWithLastName.size());
+        Assert.assertEquals(expectedLastnameId, johnSmithId);
+
+        //CleanUp
+        employeeDao.deleteById(johnSmithId);
+        employeeDao.deleteById(stephanieClarksonId);
+    }
+
+    @Test
+    public void testQueriesFindCompanyNameBySubString() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+
+        //When
         companyDao.save(softwareMachine);
         int softwareMachinesId = softwareMachine.getId();
         companyDao.save(dataMaesters);
         int dataMaestersId = dataMaesters.getId();
 
-        List<Employee> employeesWithLastName = employeeDao.retrieveEmployeesByLastname("Smith");
         List<Company> companiesWithThreeFirstLetters = companyDao.retrieveCompaniesByFirstThreeLetters("Sof");
+        int expectedCompanyId = companiesWithThreeFirstLetters.get(0).getId();
 
         //Then
-        Assert.assertEquals(1, employeesWithLastName.size());
         Assert.assertEquals(1, companiesWithThreeFirstLetters.size());
+        Assert.assertEquals(expectedCompanyId, softwareMachinesId);
 
         //CleanUp
-        employeeDao.deleteById(johnSmithId);
-        employeeDao.deleteById(stephanieClarksonId);
         companyDao.deleteById(softwareMachinesId);
         companyDao.deleteById(dataMaestersId);
     }
