@@ -54,7 +54,7 @@ public class InvoiceDaoTestSuite {
 
         //Then
         Assert.assertTrue(invoiceReadFromDB.isPresent());
-        Assert.assertNotEquals(0, invoiceReadFromDB.get());
+        Assert.assertNotEquals(0, invoiceReadFromDB.get().getId());
         Assert.assertEquals(3, invoiceReadFromDB.get().getItems().size());
 
         //CleanUp
