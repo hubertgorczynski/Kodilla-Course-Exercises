@@ -1,18 +1,20 @@
 package com.kodilla.patterns2.observer.homework;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Student implements Observable {
     private final String name;
     private final List<Observer> observers;
-    private final List<String> homeworks;
+    private final Set<String> homeworks;
     private final KodillaCourses courseName;
 
     public Student(String name, KodillaCourses courseName) {
         this.name = name;
         observers = new ArrayList<>();
-        homeworks = new ArrayList<>();
+        homeworks = new HashSet<>();
         this.courseName = courseName;
     }
 
@@ -42,7 +44,7 @@ public class Student implements Observable {
         return name;
     }
 
-    public List<String> getHomeworks() {
+    public Set<String> getHomeworks() {
         return homeworks;
     }
 
