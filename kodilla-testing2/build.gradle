@@ -3,12 +3,13 @@ plugins {
 }
 
 version 'unspecified'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-6')
+    implementation(group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59')
     testImplementation(group: 'junit', name: 'junit', version: '4.12')
 }
