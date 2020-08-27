@@ -55,19 +55,21 @@ public class CrudAppTestSuite {
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        driver.findElements(By.xpath("//form[@class=\"datable＿row\"]")).stream()
-                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datable＿field-value\"]"))
-                        .getText().equals(taskName))
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm ->
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                                .getText().equals(taskName))
                 .forEach(theForm -> {
                     WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
                     Select select = new Select(selectElement);
                     select.selectByIndex(1);
 
                     WebElement buttonCreateCard =
-                            theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
+                            theForm.findElement(By.xpath(".//button[contains(@class,\"card-creation\")]"));
                     buttonCreateCard.click();
                 });
         Thread.sleep(5000);
+        driver.switchTo().alert().accept();
     }
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
@@ -78,8 +80,7 @@ public class CrudAppTestSuite {
 
         driverTrello.findElement(By.id("user")).sendKeys("hubert.gorczynski3678@gmail.com");
         driverTrello.findElement(By.id("password")).sendKeys("Tangella368#");
-        WebElement el = driverTrello.findElement(By.id("login"));
-        el.submit();
+        driverTrello.findElement(By.id("login")).submit();
 
         Thread.sleep(4000);
 
@@ -89,7 +90,8 @@ public class CrudAppTestSuite {
         Thread.sleep(4000);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
-                .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]")).size() > 0)
+                .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]"))
+                        .size() > 0)
                 .forEach(WebElement::click);
 
         Thread.sleep(4000);
