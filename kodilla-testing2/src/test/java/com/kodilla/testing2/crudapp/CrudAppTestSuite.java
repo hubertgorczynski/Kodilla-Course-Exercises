@@ -109,15 +109,15 @@ public class CrudAppTestSuite {
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        driver.findElements(By.xpath("//form[@class=\"datatable＿row\"]")).stream()
-                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable＿field-value\"]"))
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
                         .getText().equals(taskName))
                 .forEach(theForm -> {
                     WebElement buttonDeleteCard =
                             theForm.findElement(By.xpath(".//button[@data-task-delete-button]"));
                     buttonDeleteCard.click();
                 });
-        Thread.sleep(4000);
+        Thread.sleep(15000);
     }
 
     @Test
@@ -125,6 +125,6 @@ public class CrudAppTestSuite {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
-        //deleteTaskCrudTestTask(taskName);
+        deleteTaskCrudTestTask(taskName);
     }
 }
