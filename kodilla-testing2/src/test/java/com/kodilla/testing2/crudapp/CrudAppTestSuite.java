@@ -82,19 +82,19 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("Tangella368#");
         driverTrello.findElement(By.id("login")).submit();
 
-        Thread.sleep(4000);
+        Thread.sleep(15000);
 
         driverTrello.findElement(By.id("password")).sendKeys("Tangella368#");
         driverTrello.findElement(By.id("login-submit")).submit();
 
-        Thread.sleep(4000);
+        Thread.sleep(15000);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
-                .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]"))
+                .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Kodilla Application\"]"))
                         .size() > 0)
                 .forEach(WebElement::click);
 
-        Thread.sleep(4000);
+        Thread.sleep(20000);
 
         result = driverTrello.findElements(By.xpath("//span")).stream()
                 .anyMatch(theSpan -> theSpan.getText().equals(taskName));
